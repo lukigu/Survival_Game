@@ -5,6 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement")]
+    public float moveSpeed;
+    private Vector2 curMovementInput;
+    //compoinents
+    private Rigidbody rig;
+
+    [Header("Look")]
     // Start is called before the first frame update
     public Transform cameraContainer;
     public float minXLook;
@@ -14,15 +21,35 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 mouseDelta;
 
+    private void Awake()
+    {
+        //get our components
+        rig = GetComponent<Rigidbody>();
+    }
     void Start()
     {
         // lock the cursor at the start of the game
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    void FixedUpdate()
+    {
+        Move();
+    }
+
     private void LateUpdate()
     {
         CameraLook();
+    }
+
+    void Move()
+    {
+        Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
+        dir *= moveSpeed;
+        dir.y = rig.velocity.y;
+
+        rig.velocity = dir;
+
     }
 
     void CameraLook()
@@ -40,5 +67,17 @@ public class PlayerController : MonoBehaviour
     public void OnLookInput(InputAction.CallbackContext context)
     {
         mouseDelta = context.ReadValue<Vector2>();
+    }
+
+    public void OnMoveInput(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+        {
+            curMovementInput = context.ReadValue<Vector2>();
+        }
+        else if(context.phase == InputActionPhase.Canceled)
+        {
+            curMovementInput = Vector2.zero;
+        }
     }
 }
