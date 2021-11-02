@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 2130738560}
   - component: {fileID: 2130738559}
   - component: {fileID: 2130738558}
+  - component: {fileID: 2130738562}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -469,6 +470,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2b9ebe36cb2df47972e71ba1ba7aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraContainer: {fileID: 373502546}
+  minXLook: -85
+  maxXLook: 85
+  lookSensivity: 0.2
 --- !u!54 &2130738559
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -514,3 +519,77 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2130738562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130738557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 535751e65ee845146aa0a6ca8533460b, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 18855a46-8225-4679-888e-fc344a8938da
+    m_ActionName: Main/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1394d5d8-8ae3-4b5e-a0e8-faee7c99f0d3
+    m_ActionName: Main/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed29839c-d3c6-404c-963a-05fa7d99fd62
+    m_ActionName: Main/AltAttack[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14abf629-8638-4a4b-b491-d16cec01d655
+    m_ActionName: Main/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 333eb8c2-3dfb-4ced-8e8c-72fa8d1bc387
+    m_ActionName: Main/Inventory[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 701f0322-cb74-47f0-85fa-c589628223f5
+    m_ActionName: Main/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fe5d7706-8141-4c71-8f13-98c8cd42f54d
+    m_ActionName: Main/PauseMenu[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2130738558}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnLookInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a9eb5704-81b0-47dd-a946-fe12fbea0b12
+    m_ActionName: Main/Look[/Mouse/delta]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Main
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
