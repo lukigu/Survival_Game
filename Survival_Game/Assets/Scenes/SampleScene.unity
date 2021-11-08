@@ -485,14 +485,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
-  fullDayLength: 30
+  fullDayLength: 15
   startTime: 0.4
-  noon: {x: 0, y: 0, z: 0}
+  noon: {x: 90, y: 0, z: 0}
   sun: {fileID: 705507994}
   sunColor:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 1, g: 0.62205034, b: 0, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 1, g: 0.62352943, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  sunIntensity:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.199646
+      value: 0
+      inSlope: 3.5347373
+      outSlope: 3.5347373
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.13091241
+    - serializedVersion: 3
+      time: 0.4993044
+      value: 0.9980277
+      inSlope: -0.004947316
+      outSlope: -0.004947316
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3729868
+    - serializedVersion: 3
+      time: 0.80041504
+      value: -0.0005760193
+      inSlope: -4.052073
+      outSlope: -4.052073
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09900614
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  moon: {fileID: 1644377282}
+  moonColor:
+    serializedVersion: 2
+    key0: {r: 0, g: 0.2509804, b: 0.6313726, a: 1}
+    key1: {r: 0, g: 0.2509804, b: 0.6313726, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -518,27 +581,57 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  sunIntensity:
+  moonIntensity:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
+      time: 0.0000024450128
+      value: 0.5
+      inSlope: -5.186943
+      outSlope: -5.186943
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.08914305
     - serializedVersion: 3
-      time: 1
-      value: -0.0005760193
-      inSlope: 0
-      outSlope: 0
+      time: 0.3000111
+      value: 0.00015809422
+      inSlope: -0.05540967
+      outSlope: -0.05540967
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.699892
+      value: -0.00010493398
+      inSlope: 0.027619334
+      outSlope: 0.027619334
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.037362635
+    - serializedVersion: 3
+      time: 0.9991455
+      value: 0.49884033
+      inSlope: 4.7157536
+      outSlope: 4.7157536
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.105546884
       outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  lightIntensityMultiplayer:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reflectionIntensityMultiplayer:
+    serializedVersion: 2
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

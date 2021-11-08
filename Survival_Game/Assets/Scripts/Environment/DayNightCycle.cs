@@ -15,4 +15,37 @@ public class DayNightCycle : MonoBehaviour
     public Light sun;
     public Gradient sunColor;
     public AnimationCurve sunIntensity;
+
+    [Header("Moon")]
+    public Light moon;
+    public Gradient moonColor;
+    public AnimationCurve moonIntensity;
+
+    [Header("Other Lightning")]
+    public AnimationCurve lightIntensityMultiplayer;
+    public AnimationCurve reflectionIntensityMultiplayer;
+
+    private void Start()
+    {
+        timeRate = 1.0f / fullDayLength;
+        time = startTime;
+    }
+    private void Update()
+    {
+        //increment time
+        time += timeRate * Time.deltaTime;
+
+        if (time >= 1.0f)
+        {
+            time = 0.0f;
+        }
+
+        //light rotation
+        sun.transform.eulerAngles = (time - 0.25f) * noon * 4.0f;
+        moon.transform.eulerAngles = (time - 0.25f) * noon * 4.0f;
+
+        //light intensity
+        sun.intensity = sunIntensity.Evaluate(time);
+        moon.intensity = moonIntensity.Evaluate(time);
+    }
 }
