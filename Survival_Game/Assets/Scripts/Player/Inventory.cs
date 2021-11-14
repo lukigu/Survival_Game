@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
     public TextMeshProUGUI selectedItemStatValues;
     public GameObject useButton;
     public GameObject equipButton;
-    public GameObject unequipButton;
+    public GameObject unEquipButton;
     public GameObject dropButton;
 
     private int curEquipIndex;
@@ -61,17 +61,31 @@ public class Inventory : MonoBehaviour
         ClearSelectedItemWindow();
     }
 
+    // called when we give an inventory input - managed by the Input System
+    public void OnInventoryButton(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            Toggle();
+        }
+    }
+
     // opens or closes the inventory
     public void Toggle()
     {
-        //if (inventoryWindow.activeInHierarchy)
-        //{
-        //    inventoryWindow.SetActive(false);
-        //}
-        //else
-        //{
-        //    inventoryWindow.SetActive(true);
-        //}
+        if (inventoryWindow.activeInHierarchy)
+        {
+            inventoryWindow.SetActive(false);
+            onCloseInventory.Invoke();
+            //controller.togglecursor(false);
+        }
+        else
+        {
+            inventoryWindow.SetActive(true);
+            onOpenInventory.Invoke();
+            ClearSelectedItemWindow();
+            //controller.ToggleCursor(true);
+        }
     }
 
     // is the inventory currently open?
@@ -167,13 +181,42 @@ public class Inventory : MonoBehaviour
     // called when we click on an item slot
     public void SelectItem(int index)
     {
+        // we can't select the slot if there's no item
+        if (slots[index].item == null)
+        {
+            return;
+        }
 
+        // set the selected item preview window
+        selectedItem = slots[index];
+        selectedItemIndex = index;
+
+        selectedItemName.text = selectedItem.item.displayName;
+        selectedItemDescription.text = selectedItem.item.description;
+
+        //set stat values and stat names
+
+        useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
+        equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlots[index].equipped);
+        unEquipButton.SetActive(selectedItem.item.type == ItemType.Equipable && uiSlots[index].equipped);
+        dropButton.SetActive(true);
     }
 
     // called when the inventory opens or the currently selected item has depleted
     void ClearSelectedItemWindow()
     {
+        //clear text elements
+        selectedItem = null;
+        selectedItemName.text = string.Empty;
+        selectedItemDescription.text = string.Empty;
+        selectedItemStatNames.text = string.Empty;
+        selectedItemStatValues.text = string.Empty;
 
+        //disable buttons
+        useButton.SetActive(false);
+        equipButton.SetActive(false);
+        unEquipButton.SetActive(false);
+        dropButton.SetActive(false);
     }
 
     // called when the "Use" button is pressed

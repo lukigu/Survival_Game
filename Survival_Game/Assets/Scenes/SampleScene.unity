@@ -4806,7 +4806,7 @@ GameObject:
   - component: {fileID: 1702669688}
   - component: {fileID: 1702669687}
   m_Layer: 5
-  m_Name: Un-equip
+  m_Name: Un-equipButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6564,7 +6564,19 @@ MonoBehaviour:
     m_ActionId: 14abf629-8638-4a4b-b491-d16cec01d655
     m_ActionName: Main/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2130738565}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnInventoryButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 333eb8c2-3dfb-4ced-8e8c-72fa8d1bc387
     m_ActionName: Main/Inventory[/Keyboard/i]
   - m_PersistentCalls:
@@ -6720,7 +6732,7 @@ MonoBehaviour:
   selectedItemStatValues: {fileID: 1121877796}
   useButton: {fileID: 2129527316}
   equipButton: {fileID: 1705751310}
-  unequipButton: {fileID: 1702669685}
+  unEquipButton: {fileID: 1702669685}
   dropButton: {fileID: 468554226}
   onOpenInventory:
     m_PersistentCalls:
