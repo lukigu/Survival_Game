@@ -16,6 +16,6 @@ MonoBehaviour:
   description: Weapon
   type: 1
   icon: {fileID: 21300000, guid: e15958bb1c0a35446affd05eea5a1f49, type: 3}
-  dropPrefab: {fileID: 0}
+  dropPrefab: {fileID: 5431066647957831, guid: f3d70a824c20a2f4ea88294be0b9ea2d, type: 3}
   canStack: 0
   maxStackAmount: 0

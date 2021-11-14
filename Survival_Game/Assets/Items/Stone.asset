@@ -16,6 +16,6 @@ MonoBehaviour:
   description: Material for crafting
   type: 0
   icon: {fileID: 21300000, guid: 6c253b9b7fa4cd34cb3d6a246826d9db, type: 3}
-  dropPrefab: {fileID: 0}
+  dropPrefab: {fileID: 8235990156357223663, guid: 7f42f06f47d3eb8458b6e2ff6543522b, type: 3}
   canStack: 1
   maxStackAmount: 12
