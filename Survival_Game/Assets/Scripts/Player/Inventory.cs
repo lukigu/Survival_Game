@@ -44,10 +44,24 @@ public class Inventory : MonoBehaviour
         instance = this;
         controller = GetComponent<PlayerController>();
     }
+
+    private void Start()
+    {
+        inventoryWindow.SetActive(false);
+        slots = new ItemSlot[uiSlots.Length];
+
+        //initialize the slots
+        for(int x = 0; x < slots.Length; x++)
+        {
+            slots[x] = new ItemSlot();
+            uiSlots[x].index = x;
+            uiSlots[x].Clear();
+        }
+    }
 }
 
 public class ItemSlot
 {
     public ItemData item;
-    public int quamtity;
+    public int quantity;
 }
