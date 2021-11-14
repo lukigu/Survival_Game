@@ -36,10 +36,8 @@ public class ItemSlotUI : MonoBehaviour
         //if
         quantityText.text = slot.quantity > 1 ? slot.quantity.ToString() : string.Empty;
 
-        if(outline != null)
-        {
+        if (outline != null)
             outline.enabled = equipped;
-        }
     }
 
     // clears the item slot

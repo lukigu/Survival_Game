@@ -57,12 +57,21 @@ public class Inventory : MonoBehaviour
             uiSlots[x].index = x;
             uiSlots[x].Clear();
         }
+
+        ClearSelectedItemWindow();
     }
 
     // opens or closes the inventory
     public void Toggle()
     {
-
+        //if (inventoryWindow.activeInHierarchy)
+        //{
+        //    inventoryWindow.SetActive(false);
+        //}
+        //else
+        //{
+        //    inventoryWindow.SetActive(true);
+        //}
     }
 
     // is the inventory currently open?
@@ -74,7 +83,8 @@ public class Inventory : MonoBehaviour
     // adds the requested item to the player's inventory
     public void AddItem(ItemData item)
     {
-        if(item.canStack)
+        // does this item have a stack it can be added to?
+        if (item.canStack)
         {
             ItemSlot slotToStackTo = GetItemStack(item);
 
@@ -88,7 +98,8 @@ public class Inventory : MonoBehaviour
 
         ItemSlot emptySlot = GetEmptySlot();
 
-        if(emptySlot != null)
+        // do we have an empty slot for the item?
+        if (emptySlot != null)
         {
             emptySlot.item = item;
             emptySlot.quantity = 1;
@@ -96,25 +107,45 @@ public class Inventory : MonoBehaviour
             return;
         }
 
+        // if the item can't stack and there are no empty slots - throw it away
         ThrowItem(item);
     }
 
     // spawns the item infront of the player
     void ThrowItem(ItemData item)
     {
-
+        //instantiate spawns item in front of the player, random rotation
+        Instantiate(item.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360.0f));
     }
 
     // updates the UI slots
     void UpdateUI()
     {
-
+        for(int x = 0; x < slots.Length; x++)
+        {
+            if(slots[x].item != null)
+            {
+                uiSlots[x].Set(slots[x]);
+            }
+            else
+            {
+                uiSlots[x].Clear();
+            }
+        }
     }
 
     // returns the item slot that the requested item can be stacked on
     // returns null if there is no stack available
     ItemSlot GetItemStack(ItemData item)
     {
+        for(int x = 0; x < slots.Length; x++)
+        {
+            if(slots[x].item == item && slots[x].quantity < item.maxStackAmount)
+            {
+                return slots[x];
+            }
+        }
+
         return null;
     }
 
@@ -122,6 +153,14 @@ public class Inventory : MonoBehaviour
     // if there are no empty slots - return null
     ItemSlot GetEmptySlot()
     {
+        for (int x = 0; x < slots.Length; x++)
+        {
+            if (slots[x].item == null)
+            {
+                return slots[x];
+            }
+        }
+
         return null;
     }
 

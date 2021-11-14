@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 5061368770619781825}
-  icon: {fileID: 451426505432538327}
+  icon: {fileID: 8212094635913482653}
   quantityText: {fileID: 3042804921728533624}
   index: 0
   equipped: 0
