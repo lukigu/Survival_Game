@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
 
     //components
     private PlayerController controller;
+    private PlayerNeeds needs;
 
     [Header("Events")]
     public UnityEvent onOpenInventory;
@@ -43,6 +44,7 @@ public class Inventory : MonoBehaviour
     {
         instance = this;
         controller = GetComponent<PlayerController>();
+        needs = GetComponent<PlayerNeeds>();
     }
 
     private void Start()
@@ -195,6 +197,15 @@ public class Inventory : MonoBehaviour
         selectedItemDescription.text = selectedItem.item.description;
 
         //set stat values and stat names
+        selectedItemStatNames.text = string.Empty;
+        selectedItemStatValues.text = string.Empty;
+
+        for (int x = 0; x < selectedItem.item.consumables.Length; x++)
+        {
+            selectedItemStatNames.text += selectedItem.item.consumables[x].type.ToString() + "\n";
+            selectedItemStatValues.text += selectedItem.item.consumables[x].value.ToString() + "\n";
+        }
+
 
         useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
         equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlots[index].equipped);
@@ -222,7 +233,21 @@ public class Inventory : MonoBehaviour
     // called when the "Use" button is pressed
     public void OnUseButton()
     {
+        if(selectedItem.item.type == ItemType.Consumable)
+        {
+            for(int x = 0; x < selectedItem.item.consumables.Length; x++)
+            {
+                switch(selectedItem.item.consumables[x].type)
+                {
+                    case ConsumableType.Helath: needs.Heal(selectedItem.item.consumables[x].value); break;
+                    case ConsumableType.Hunger: needs.Eat(selectedItem.item.consumables[x].value); break;
+                    case ConsumableType.Thirst: needs.Drink(selectedItem.item.consumables[x].value); break;
+                    case ConsumableType.Sleep: needs.Sleep(selectedItem.item.consumables[x].value); break;
+                }
+            }
+        }
 
+        RemoveSelectedItem();
     }
 
     // called when the "Equip" button is pressed
