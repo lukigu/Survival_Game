@@ -77,14 +77,14 @@ public class Inventory : MonoBehaviour
         {
             inventoryWindow.SetActive(false);
             onCloseInventory.Invoke();
-            //controller.togglecursor(false);
+            controller.ToggleCursor(false);
         }
         else
         {
             inventoryWindow.SetActive(true);
             onOpenInventory.Invoke();
             ClearSelectedItemWindow();
-            //controller.ToggleCursor(true);
+            controller.ToggleCursor(true);
         }
     }
 
@@ -246,13 +246,27 @@ public class Inventory : MonoBehaviour
     // called when the "Drop" button is pressed
     public void OnDropButton()
     {
-
+        ThrowItem(selectedItem.item);
+        RemoveSelectedItem();
     }
 
     // removes the currently selected item
     void RemoveSelectedItem()
     {
+        selectedItem.quantity--;
 
+        if(selectedItem.quantity == 0)
+        {
+            if(uiSlots[selectedItemIndex].equipped == true)
+            {
+                UnEquip(selectedItemIndex);
+            }
+
+            selectedItem.item = null;
+            ClearSelectedItemWindow();
+        }
+
+        UpdateUI();
     }
 
     public void RemoveItem(ItemData item)

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 curMovementInput;
     public float jumpForce;
     public LayerMask groundLayerMask;
+
     //compoinents
     private Rigidbody rig;
 
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public float lookSensivity;
 
     private Vector2 mouseDelta;
+
+    [HideInInspector]
+    public bool canLook = true;
 
     private void Awake()
     {
@@ -41,7 +45,10 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        CameraLook();
+        if (canLook == true)
+        {
+            CameraLook();
+        }
     }
 
     void Move()
@@ -131,5 +138,11 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawRay(new Ray(transform.position + (-transform.forward * 0.1f) + (Vector3.up * 0.01f), Vector3.down));
         Gizmos.DrawRay(new Ray(transform.position + (transform.right * 0.1f) + (Vector3.up * 0.01f), Vector3.down));
         Gizmos.DrawRay(new Ray(transform.position + (-transform.right * 0.1f) + (Vector3.up * 0.01f), Vector3.down));
+    }
+
+    public void ToggleCursor(bool toggle)
+    {
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
     }
 }
