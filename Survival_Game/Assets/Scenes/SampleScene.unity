@@ -6693,6 +6693,7 @@ GameObject:
   - component: {fileID: 2130738565}
   - component: {fileID: 2130738563}
   - component: {fileID: 2130738564}
+  - component: {fileID: 2130738566}
   - component: {fileID: 2130738562}
   m_Layer: 8
   m_Name: Player
@@ -7011,6 +7012,21 @@ MonoBehaviour:
   onCloseInventory:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2130738566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130738557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e386ebd7396d41469e7743fc6614654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testItem: {fileID: 11400000, guid: b0797b8132563dc4eaad6a96afdb4411, type: 2}
+  curEquip: {fileID: 0}
+  equipParent: {fileID: 1862720314}
 --- !u!114 &2136081221 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8562312276237645769, guid: c590814a947cc654a8dcd008c99260c0, type: 3}
