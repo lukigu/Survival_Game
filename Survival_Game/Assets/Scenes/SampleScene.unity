@@ -5002,7 +5002,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1702669688}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2130738565}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnUnEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1702669688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5123,7 +5135,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1705751313}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2130738565}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: OnEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1705751313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7024,7 +7048,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e386ebd7396d41469e7743fc6614654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testItem: {fileID: 11400000, guid: b0797b8132563dc4eaad6a96afdb4411, type: 2}
   curEquip: {fileID: 0}
   equipParent: {fileID: 1862720314}
 --- !u!114 &2136081221 stripped

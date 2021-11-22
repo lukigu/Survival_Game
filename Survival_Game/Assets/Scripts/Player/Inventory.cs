@@ -253,19 +253,36 @@ public class Inventory : MonoBehaviour
     // called when the "Equip" button is pressed
     public void OnEquipButton()
     {
+        if (uiSlots[curEquipIndex].equipped)
+        {
+            UnEquip(curEquipIndex);
+        }
 
+        uiSlots[selectedItemIndex].equipped = true;
+        curEquipIndex = selectedItemIndex;
+        EquipManager.instance.EquipNew(selectedItem.item);
+        UpdateUI();
+
+        SelectItem(selectedItemIndex);
     }
 
     // unequips the requested item
-    void UnEquip(int inedex)
+    void UnEquip(int index)
     {
+        uiSlots[index].equipped = false;
+        EquipManager.instance.UnEquip();
+        UpdateUI();
 
+        if(selectedItemIndex == index)
+        {
+            SelectItem(index);
+        }
     }
 
     // called when the "UnEquip" button is pressed
     public void OnUnEquipButton()
     {
-
+        UnEquip(selectedItemIndex);
     }
 
     // called when the "Drop" button is pressed
