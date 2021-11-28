@@ -15,20 +15,21 @@ public class EquipTool : Equip
     public bool doesDealDamage;
     public int damage;
 
-    //components
+    // components
     private Animator anim;
     private Camera cam;
 
-    private void Awake()
+    void Awake()
     {
-        //get our components
+        // get our components
         anim = GetComponent<Animator>();
         cam = Camera.main;
     }
 
-    public override void OnAltAttackInput()
+    // called when we press the attack input
+    public override void OnAttackInput()
     {
-        if(!attacking)
+        if (!attacking)
         {
             attacking = true;
             anim.SetTrigger("Attack");
@@ -36,13 +37,14 @@ public class EquipTool : Equip
         }
     }
 
+    // called when we're able to attack again
     void OnCanAttack()
     {
-        attacking = true;
+        attacking = false;
     }
 
     public void OnHit()
     {
-
+        Debug.Log("Hit");
     }
 }

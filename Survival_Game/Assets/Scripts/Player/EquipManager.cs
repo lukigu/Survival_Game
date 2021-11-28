@@ -22,18 +22,17 @@ public class EquipManager : MonoBehaviour
     // called when we press the Left Mouse Button - managed by the Input System
     public void OnAttackInput(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed && curEquip != null && controller.canLook == true)
+        if (context.phase == InputActionPhase.Performed && curEquip != null && controller.canLook == true)
         {
-
+            curEquip.OnAttackInput();
         }
     }
-
     // called when we press the Right Mouse Button - managed by the Input System
     public void OnAltAttackInput(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && curEquip != null && controller.canLook == true)
         {
-
+            curEquip.OnAltAttackInput();
         }
     }
 
