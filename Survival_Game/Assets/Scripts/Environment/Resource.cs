@@ -11,20 +11,23 @@ public class Resource : MonoBehaviour
 
     public void Gather(Vector3 hitPoint, Vector3 hitNormal)
     {
+        //give the player quantity per hit of the resource
         for(int i = 0; i < quantityPerHit; i++)
         {
-            capacity -= 1;
-
-            if(capacity <= 0)
+            if (capacity <= 0)
             {
                 break;
             }
 
+            capacity -= 1;
+
             Inventory.instance.AddItem(itemToGive);
         }
 
-        Instantiate(hitParticle, hitPoint, Quaternion.LookRotation(hitNormal, Vector3.up));
+        //create hit particle
+        Destroy(Instantiate(hitParticle, hitPoint, Quaternion.LookRotation(hitNormal, Vector3.up)), 1.0f);
 
+        //if empty destroy the resource
         if(capacity <= 0)
         {
             Destroy(gameObject);
