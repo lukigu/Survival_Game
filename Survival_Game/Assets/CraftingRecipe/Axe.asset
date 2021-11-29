@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10290e94a3a73874898955a486232d26, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  itemToCraft: {fileID: 0}
-  cost: []
+  itemToCraft: {fileID: 11400000, guid: b0797b8132563dc4eaad6a96afdb4411, type: 2}
+  cost:
+  - item: {fileID: 11400000, guid: 4556cd61acb35e641906f5ca2f394cb8, type: 2}
+    quantity: 2
+  - item: {fileID: 11400000, guid: 008ace630efebde42a44d1550af15d1e, type: 2}
+    quantity: 2

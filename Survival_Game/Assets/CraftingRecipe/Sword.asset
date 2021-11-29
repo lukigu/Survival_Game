@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::NewBehaviourScript
-  itemToCraft: {fileID: 0}
+  itemToCraft: {fileID: 11400000, guid: ba36bfaaa8ceff440a2727781b31088a, type: 2}
+  cost:
+  - {item: {fileID: 11400000, guid: 008ace630efebde42a44d1550af15d1e, type: 2}, quantity: 1}
+  - {item: {fileID: 11400000, guid: 4556cd61acb35e641906f5ca2f394cb8, type: 2}, quantity: 2}
