@@ -313,12 +313,45 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem(ItemData item)
     {
+        for(int i = 0; i < slots.Length; i++)
+        {
+            if(slots[i].item == item)
+            {
+                slots[i].quantity--;
 
+                if(slots[i].quantity == 0)
+                {
+                    if(uiSlots[i].equipped == true)
+                    {
+                        UnEquip(i);
+                    }
+
+                    slots[i].item = null;
+                    ClearSelectedItemWindow();
+                }
+
+                UpdateUI();
+                return;
+            }
+        }
     }
 
     // does the player have "quantity" amount of "item"s? later for crafting
     public bool HasItems(ItemData item, int quantity)
     {
+        int amount = 0;
+
+        for(int i = 0; i < slots.Length; i++)
+        {
+            if(slots[i].item == item)
+            {
+                amount += slots[i].quantity;
+            }
+            if(amount >= quantity)
+            {
+                return true;
+            }
+        }
         return false;
     }
 }
