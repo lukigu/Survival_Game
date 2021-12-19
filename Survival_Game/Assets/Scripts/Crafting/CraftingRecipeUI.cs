@@ -16,49 +16,55 @@ public class CraftingRecipeUI : MonoBehaviour
     public Color cannotCraftColor;
     private bool canCraft;
 
-    private void OnEnable()
+    void OnEnable()
     {
         UpdateCanCraft();
     }
 
+    // updates the UI to display whether or not we can craft the recipe
     public void UpdateCanCraft()
     {
         canCraft = true;
 
-        for(int i = 0; i < recipe.cost.Length; i++)
+        for (int i = 0; i < recipe.cost.Length; i++)
         {
-            if(!Inventory.instance.HasItems(recipe.cost[i].item, recipe.cost[i].quantity))
+            if (!Inventory.instance.HasItems(recipe.cost[i].item, recipe.cost[i].quantity))
             {
                 canCraft = false;
                 break;
             }
         }
 
+        Debug.Log(canCraft);
+        Debug.Log(canCraftColor);
+        Debug.Log(cannotCraftColor);
+
         backgroundImage.color = canCraft ? canCraftColor : cannotCraftColor;
     }
 
-    private void Start()
+    void Start()
     {
         icon.sprite = recipe.itemToCraft.icon;
         itemName.text = recipe.itemToCraft.displayName;
 
-        for(int i = 0; i < resourceCosts.Length; i++)
+        for (int i = 0; i < resourceCosts.Length; i++)
         {
-            if(i < recipe.cost.Length)
+            if (i < recipe.cost.Length)
             {
                 resourceCosts[i].gameObject.SetActive(true);
                 resourceCosts[i].sprite = recipe.cost[i].item.icon;
                 resourceCosts[i].transform.GetComponentInChildren<TextMeshProUGUI>().text = recipe.cost[i].quantity.ToString();
             }
             else
-            {
                 resourceCosts[i].gameObject.SetActive(false);
-            }
         }
     }
 
     public void OnClickButton()
     {
-        CraftingWindow.instance.Craft(recipe);
+        if (canCraft)
+        {
+            CraftingWindow.instance.Craft(recipe);
+        }
     }
 }

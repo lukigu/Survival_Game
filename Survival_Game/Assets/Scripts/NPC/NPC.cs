@@ -47,4 +47,15 @@ public class NPC : MonoBehaviour
     private NavMeshAgent agent;
     private Animator anim;
     private SkinnedMeshRenderer[] meshRenderers;
+
+    private void Awake()
+    {
+        //get components
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        agent.SetDestination(new Vector3(-19, 3, -19));
+    }
 }
