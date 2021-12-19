@@ -27,10 +27,14 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool canLook = true;
 
+    // singleton
+    public static PlayerController instance;
+
     private void Awake()
     {
         //get our components
         rig = GetComponent<Rigidbody>();
+        instance = this;
     }
     void Start()
     {
