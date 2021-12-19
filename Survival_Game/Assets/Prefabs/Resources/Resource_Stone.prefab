@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 564980218056713692}
   - component: {fileID: 2399357383266510190}
   - component: {fileID: 6346403220372320385}
+  - component: {fileID: 2720415769162301342}
   m_Layer: 10
   m_Name: Resource_Stone
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemToGive: {fileID: 11400000, guid: 4556cd61acb35e641906f5ca2f394cb8, type: 2}
   quantityPerHit: 1
-  capacity: 0
+  capacity: 5
   hitParticle: {fileID: 6377161319891557209, guid: c17dfbdf27ec668428a2f629c90287b2, type: 3}
 --- !u!136 &6346403220372320385
 CapsuleCollider:
@@ -63,6 +64,22 @@ CapsuleCollider:
   m_Height: 1.8300238
   m_Direction: 1
   m_Center: {x: 0, y: 0.9050584, z: 0.012487054}
+--- !u!208 &2720415769162301342
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3344967384786962251}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.45, y: 1.16, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.82, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &9117892097012954448
 PrefabInstance:
   m_ObjectHideFlags: 0

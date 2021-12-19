@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum AItype
+public enum AIType
 {
     Passive,
     Scared,
-    Aggresive
+    Aggressive
 }
-
 public enum AIState
 {
     Idle,
@@ -17,7 +16,6 @@ public enum AIState
     Attacking,
     Fleeing
 }
-
 public class NPC : MonoBehaviour
 {
     [Header("Stats")]
@@ -27,7 +25,7 @@ public class NPC : MonoBehaviour
     public ItemData[] dropOnDeath;
 
     [Header("AI")]
-    public AItype aiType;
+    public AIType aiType;
     private AIState aiState;
     public float detectDistance;
     public float safeDistance;
@@ -43,10 +41,9 @@ public class NPC : MonoBehaviour
     public float attackRate;
     private float lastAttackTime;
     public float attackDistance;
-
     private float playerDistance;
 
-    //components
+    // components
     private NavMeshAgent agent;
     private Animator anim;
     private SkinnedMeshRenderer[] meshRenderers;
