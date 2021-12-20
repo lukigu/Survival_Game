@@ -48,13 +48,18 @@ public class NPC : MonoBehaviour
     private Animator anim;
     private SkinnedMeshRenderer[] meshRenderers;
 
-    void Awake()
+    private void Awake()
     {
         //get components
         agent = GetComponent<NavMeshAgent>();
     }
 
-    void Update()
+    private void Start()
+    {
+        SetState(AIState.Wandering);
+    }
+
+    private void Update()
     {
         //agent.SetDestination(PlayerController.instance.transform.position);
 
@@ -86,22 +91,26 @@ public class NPC : MonoBehaviour
         }
     }
 
-    void PassiveUpdate()
+    private void PassiveUpdate()
+    {
+        if(aiState == AIState.Wandering && agent.remainingDistance < 0.1f)
+        {
+            SetState(AIState.Idle);
+            Invoke("WanderToNewLocation", Random.Range(minWanderWaitTime, maxWanderWaitTime));
+        }
+    }
+
+    private void AttackingUpdate()
     {
 
     }
 
-    void AttackingUpdate()
+    private void FleeingUpdate()
     {
 
     }
 
-    void FleeingUpdate()
-    {
-
-    }
-
-    void SetState(AIState newState)
+    private void SetState(AIState newState)
     {
         aiState = newState;
 
@@ -132,14 +141,37 @@ public class NPC : MonoBehaviour
         }
     }
 
-    void WanderToNewLocation()
+    private void WanderToNewLocation()
     {
         if(aiState != AIState.Idle)
         {
             return;
         }
 
+        SetState(AIState.Wandering);
+        agent.SetDestination(GetWanderLocation());
+    }
 
+    private Vector3 GetWanderLocation()
+    {
+        NavMeshHit hit;
+        NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
+
+        int i = 0;
+
+        while(Vector3.Distance(transform.position, hit.position) < detectDistance)
+        {
+            NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
+            
+            i++;
+
+            if(i == 30)
+            {
+                break;
+            }
+        }
+
+        return hit.position;
     }
 
 
