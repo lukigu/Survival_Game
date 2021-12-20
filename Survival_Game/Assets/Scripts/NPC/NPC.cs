@@ -93,10 +93,20 @@ public class NPC : MonoBehaviour
 
     private void PassiveUpdate()
     {
+        //has the wondering NPC reached its destination?
         if(aiState == AIState.Wandering && agent.remainingDistance < 0.1f)
         {
             SetState(AIState.Idle);
             Invoke("WanderToNewLocation", Random.Range(minWanderWaitTime, maxWanderWaitTime));
+        }
+
+        if(aiType == AIType.Aggressive && playerDistance < detectDistance)
+        {
+            SetState(AIState.Attacking);
+        }
+        else if(aiType == AIType.Scared && playerDistance < detectDistance)
+        {
+            SetState(AIState.Fleeing);
         }
     }
 
