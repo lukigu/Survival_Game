@@ -9542,9 +9542,9 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 4
   dropOnDeath: []
-  aiType: 0
+  aiType: 1
   detectDistance: 5
-  safeDistance: 5
+  safeDistance: 8
   minWanderDistance: 2
   maxWanderDistance: 4
   minWanderWaitTime: 1
