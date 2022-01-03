@@ -16,7 +16,7 @@ public enum AIState
     Attacking,
     Fleeing
 }
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour, IDamagable
 {
     [Header("Stats")]
     public int health;
@@ -52,6 +52,8 @@ public class NPC : MonoBehaviour
     {
         //get components
         agent = GetComponent<NavMeshAgent>();
+
+        meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
     private void Start()
@@ -222,4 +224,37 @@ public class NPC : MonoBehaviour
         return Vector3.Angle(transform.position - PlayerController.instance.transform.position, transform.position + targetPos);
     }
 
+    // called when we take physical damage
+    public void TakePhysicalDamage(int damageAmount)
+    {
+        health -= damageAmount;
+        if (health <= 0)
+        {
+            Die();
+            return;
+        }
+        StartCoroutine(DamageFlash());
+        // if the NPC is passive, run away when they get damaged
+        if (aiType == AIType.Passive)
+            SetState(AIState.Fleeing);
+    }
+    // called when our health reaches 0
+    void Die()
+    {
+        // drop items on death
+        for (int x = 0; x < dropOnDeath.Length; x++)
+        {
+            Instantiate(dropOnDeath[x].dropPrefab, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
+    }
+    // flashes the NPC red for 0.1 seconds
+    IEnumerator DamageFlash()
+    {
+        for (int x = 0; x < meshRenderers.Length; x++)
+            meshRenderers[x].material.color = new Color(1.0f, 0.6f, 0.6f);
+        yield return new WaitForSeconds(0.1f);
+        for (int x = 0; x < meshRenderers.Length; x++)
+            meshRenderers[x].material.color = Color.white;
+    }
 }
