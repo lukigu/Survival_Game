@@ -115,7 +115,21 @@ public class NPC : MonoBehaviour, IDamagable
 
     private void AttackingUpdate()
     {
+        if(playerDistance > attackDistance)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(PlayerController.instance.transform.position);
+        }
+        else
+        {
+            agent.isStopped = true;
 
+            if(Time.time - lastAttackTime > attackRate)
+            {
+                lastAttackTime = Time.time;
+                PlayerController.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+            }
+        }
     }
 
     private void FleeingUpdate()

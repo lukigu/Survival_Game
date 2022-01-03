@@ -9544,7 +9544,7 @@ MonoBehaviour:
   dropOnDeath:
   - {fileID: 11400000, guid: bdd5c7b26883e874b8f079055df28932, type: 2}
   - {fileID: 11400000, guid: 008ace630efebde42a44d1550af15d1e, type: 2}
-  aiType: 0
+  aiType: 2
   detectDistance: 5
   safeDistance: 8
   minWanderDistance: 2
