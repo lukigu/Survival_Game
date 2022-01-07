@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void CameraLook()
+    public void CameraLook()
     {
         // rotate the camera container up and down
         camCurXRot += mouseDelta.y * lookSensivity;
