@@ -43,10 +43,14 @@ public class NPC : MonoBehaviour, IDamagable
     public float attackDistance;
     private float playerDistance;
 
-    // components
+    //components
     private NavMeshAgent agent;
     private Animator anim;
     private SkinnedMeshRenderer[] meshRenderers;
+
+    //sound
+    public AudioClip[] footstepClips;
+    public AudioSource audioSource;
 
     private void Awake()
     {
@@ -118,7 +122,7 @@ public class NPC : MonoBehaviour, IDamagable
 
     private void AttackingUpdate()
     {
-        if(playerDistance > attackDistance)
+        if (playerDistance > attackDistance)
         {
             agent.isStopped = false;
             agent.SetDestination(PlayerController.instance.transform.position);
@@ -127,11 +131,16 @@ public class NPC : MonoBehaviour, IDamagable
         {
             agent.isStopped = true;
 
-            if(Time.time - lastAttackTime > attackRate)
+            if (Time.time - lastAttackTime > attackRate)
             {
                 lastAttackTime = Time.time;
                 PlayerController.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
                 anim.SetTrigger("Attack");
+
+                audioSource.PlayOneShot(footstepClips[Random.Range(0, footstepClips.Length)]);
+
+                //audioSource = GetComponent<AudioSource>();
+                //audioSource.Play(footstepClips[0]);
             }
         }
     }
